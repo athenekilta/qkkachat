@@ -1,9 +1,30 @@
 import React from "react";
+import axios from "axios";
+import "./Admin.css";
+
+let intervalmagic;
 
 class Admin extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  fetchInfo() {
+    axios
+      .get("/messages")
+      .then(res => res.data.data)
+      .then(res => console.log(res));
+  }
+
+  componentWillMount() {
+    console.log("yay1 mounted");
+    // intervalmagic = setInterval(this.fetchInfo, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(intervalmagic);
+  }
+
   updateInfo() {
     const info = {
       now: document.getElementById("now").value,
@@ -17,6 +38,11 @@ class Admin extends React.Component {
       text: document.getElementById("message").value,
       admin: document.querySelector("#admin").checked
     };
+
+    axios.post("/messages", messageInfo).then(res => {
+      console.log(res);
+    });
+
     console.log(messageInfo);
   }
   render() {
