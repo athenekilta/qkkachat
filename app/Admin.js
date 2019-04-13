@@ -13,15 +13,15 @@ class Admin extends React.Component {
       moderator: "",
       next: "",
       id: null
-    }
+    };
   }
 
   fetchStatus() {
     axios
       .get("/status")
       .then(res => {
-        console.log(res.data.data)
-        let data = res.data.data
+        console.log(res.data.data);
+        let data = res.data.data;
         if (data.length > 0) {
           this.setState({
             now: data[0].now,
@@ -29,7 +29,7 @@ class Admin extends React.Component {
             moderator: data[0].moderator,
             next: data[0].next,
             id: data[0]._id
-          })
+          });
         }
       })
       .catch(err => console.log(err));
@@ -55,15 +55,13 @@ class Admin extends React.Component {
       axios.patch("/status/" + this.state.id, info).then(res => {
         console.log(res);
       });
-    }
-    else {
+    } else {
       axios.post("/status", info).then(res => {
         console.log(res);
-        this.fetchStatus()
+        this.fetchStatus();
       });
     }
-
-  }
+  };
   sendMessage() {
     const messageInfo = {
       text: document.getElementById("message").value,
@@ -78,7 +76,7 @@ class Admin extends React.Component {
     console.log(messageInfo);
   }
   render() {
-    console.log(this.state)
+    console.log(this.state);
     return (
       <div className="adminContainer">
         <h1>Admin</h1>
