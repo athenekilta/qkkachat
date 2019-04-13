@@ -7,6 +7,10 @@ body {
 .mainContainer{
     background: #000;
 }
+
+.admin{
+    color: #00d000;
+}
 #message-container {
     color: #FFF;
     font-size: 24px;

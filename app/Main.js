@@ -11,13 +11,12 @@ class Message extends React.Component {
     }
 
     parseTime(date) {
-        let dateObject = new Date(date)
-        console.log(dateObject)
-        return leftPad(dateObject.getHours(), 2) + ":" + leftPad(dateObject.getMinutes(), 2) + ":" + leftPad(dateObject.getSeconds(), 2)
+
+        return leftPad(date.getHours(), 2) + ":" + leftPad(date.getMinutes(), 2) + ":" + leftPad(date.getSeconds(), 2)
     }
     render() {
         return (
-            <div class="message"> {this.parseTime(this.props.msg.timestamp)}: {this.props.msg.msg}</div >
+            <div class={this.props.msg.isAdmin ? "message admin" : "message"}> {this.props.msg.isAdmin ? "VALVOJA: " : ""}{this.parseTime(this.props.msg.timestamp)}: {this.props.msg.msg}</div >
         )
     }
 }
@@ -39,15 +38,14 @@ class Main extends React.Component {
         axios.get("/messages")
             .then(response => {
                 if (response.status === 200) {
-                    console.log(response.data)
                     let messages = response.data.data.map(x => {
                         return ({
                             "msg": x.text,
                             "isAdmin": x.admin,
-                            "timestamp": x.date
+                            "timestamp": new Date(x.date)
                         })
                     })
-                    this.setState({ messages: messages })
+                    this.setState({ messages: messages.sort((x, y) => x.timestamp - y.timestamp) })
                 }
             })
     }
@@ -72,7 +70,7 @@ class Main extends React.Component {
     render() {
         console.log(this.state)
         return (
-            <div style={{ display: "flex" }}>
+            <div className="mainContainer" style={{ display: "flex" }}>
                 <div id="left">
                     <video id="video" autoPlay>Haetaan kuvaa</video>
                     <div id="other">
