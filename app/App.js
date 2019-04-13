@@ -6,19 +6,6 @@ import admin from "./Admin";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      messages: [
-        {
-          msg: "Moro",
-          timestamp: new Date(),
-          isAdmin: false
-        }
-      ],
-      now: "",
-      speaker: "",
-      supervisor: "",
-      next: ""
-    };
   }
   render() {
     return (
