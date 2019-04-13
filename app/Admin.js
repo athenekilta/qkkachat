@@ -36,7 +36,8 @@ class Admin extends React.Component {
   sendMessage() {
     const messageInfo = {
       text: document.getElementById("message").value,
-      admin: document.querySelector("#admin").checked
+      admin: document.querySelector("#admin").checked,
+      date: new Date()
     };
 
     axios.post("/messages", messageInfo).then(res => {
@@ -47,7 +48,7 @@ class Admin extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="adminContainer">
         <h1>Admin</h1>
         <h2>infot</h2>
         Nyt

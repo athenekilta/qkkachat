@@ -4,7 +4,9 @@ body {
     overflow: hidden;
     background: #000;
 }
-
+.mainContainer{
+    background: #000;
+}
 #message-container {
     color: #FFF;
     font-size: 24px;

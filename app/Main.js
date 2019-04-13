@@ -1,6 +1,5 @@
 import React from 'react';
 import './Main.css';
-import logo from './athene_logo.png'
 import axios from 'axios'
 function leftPad(value, length) {
     return (value.toString().length < length) ? leftPad("0" + value, length) : value;
@@ -12,7 +11,9 @@ class Message extends React.Component {
     }
 
     parseTime(date) {
-        return leftPad(date.getHours(), 2) + ":" + leftPad(date.getMinutes(), 2) + ":" + leftPad(date.getSeconds(), 2)
+        let dateObject = new Date(date)
+        console.log(dateObject)
+        return leftPad(dateObject.getHours(), 2) + ":" + leftPad(dateObject.getMinutes(), 2) + ":" + leftPad(dateObject.getSeconds(), 2)
     }
     render() {
         return (
@@ -38,7 +39,15 @@ class Main extends React.Component {
         axios.get("/messages")
             .then(response => {
                 if (response.status === 200) {
-                    this.setState({ messages: response.data.data })
+                    console.log(response.data)
+                    let messages = response.data.data.map(x => {
+                        return ({
+                            "msg": x.text,
+                            "isAdmin": x.admin,
+                            "timestamp": x.date
+                        })
+                    })
+                    this.setState({ messages: messages })
                 }
             })
     }
@@ -61,6 +70,7 @@ class Main extends React.Component {
         clearInterval(interval)
     }
     render() {
+        console.log(this.state)
         return (
             <div style={{ display: "flex" }}>
                 <div id="left">
