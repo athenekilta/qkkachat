@@ -9,16 +9,17 @@ class Admin extends React.Component {
     super(props);
   }
 
-  fetchInfo() {
+  fetchStatus() {
     axios
-      .get("/messages")
-      .then(res => res.data.data)
-      .then(res => console.log(res));
+      .get("/status")
+      .then(res => res.data.data[0])
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   }
 
   componentWillMount() {
     console.log("yay1 mounted");
-    // intervalmagic = setInterval(this.fetchInfo, 1000);
+    this.fetchStatus();
   }
 
   componentWillUnmount() {
@@ -29,9 +30,13 @@ class Admin extends React.Component {
     const info = {
       now: document.getElementById("now").value,
       next: document.getElementById("next").value,
-      moderator: document.getElementById("moderator").value
+      moderator: document.getElementById("moderator").value,
+      host: document.getElementById("host").value
     };
-    console.log(info);
+
+    axios.post("/status", info).then(res => {
+      console.log(res);
+    });
   }
   sendMessage() {
     const messageInfo = {
@@ -54,11 +59,14 @@ class Admin extends React.Component {
         Nyt
         <input id="now" />
         <br />
-        Seuraavaks
-        <input id="next" />
-        <br />
         Valvoo
         <input id="moderator" />
+        <br />
+        Juontaa
+        <input id="host" />
+        <br />
+        Seuraavaks
+        <input id="next" />
         <br />
         <button onClick={this.updateInfo}>Päivitä yläpuolen infot</button>
         <div>
