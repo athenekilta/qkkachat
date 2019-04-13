@@ -1,6 +1,7 @@
 import React from 'react';
 import './Main.css';
-
+import logo from './athene_logo.png'
+import axios from 'axios'
 function leftPad(value, length) {
     return (value.toString().length < length) ? leftPad("0" + value, length) : value;
 }
@@ -19,30 +20,30 @@ class Message extends React.Component {
         )
     }
 }
-
+let interval = null;
 class Main extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            messages: [
-                {
-                    msg: "Moro",
-                    timestamp: new Date(),
-                    isAdmin: false
-                },
-                {
-                    msg: "Miten menee Miten menee Miten menee Miten menee",
-                    timestamp: new Date(),
-                    isAdmin: false
-                }],
+            messages: [],
             now: "",
             speaker: "",
             supervisor: "",
             next: ""
         }
+        this.getMessages = this.getMessages.bind(this);
+    }
+
+    getMessages() {
+        axios.get("/messages")
+            .then(response => {
+                if (response.status === 200) {
+                    this.setState({ messages: response.data.data })
+                }
+            })
     }
     componentDidMount() {
-
+        interval = window.setInterval(this.getMessages, 1000)
 
 
         if (navigator.mediaDevices.getUserMedia) {
@@ -56,6 +57,9 @@ class Main extends React.Component {
                 });
         }
     }
+    componentWillUnmount() {
+        clearInterval(interval)
+    }
     render() {
         return (
             <div style={{ display: "flex" }}>
@@ -63,7 +67,7 @@ class Main extends React.Component {
                     <video id="video" autoPlay>Haetaan kuvaa</video>
                     <div id="other">
                         <div id="info">
-                            <img src="athene_logo.png" alt="" />
+
                             <div id="name">Qkkachat</div>
                             <div id="contact">
                                 <div id="phone">TG: @Qkkachat</div>
@@ -71,17 +75,17 @@ class Main extends React.Component {
                         </div>
 
                         <div id="status">
-                            <div class="row">
+                            <div className="row">
                                 Nyt: <span id="status-now"></span>
                             </div>
-                            <div class="row">
+                            <div className="row">
                                 Juontaa: <span id="status-host"></span>
                             </div>
-                            <div class="row">
+                            <div className="row">
                                 Valvoo: <span id="status-supervisor"></span>
                             </div>
                             <br />
-                            <div class="row">
+                            <div className="row">
                                 Seuraavaksi: <span id="status-next"></span>
                             </div>
                         </div>
@@ -89,6 +93,7 @@ class Main extends React.Component {
                 </div>
                 <div id="message-container">
                     <div id="messages">
+                        <h2>Viestit studioon</h2>
                         {this.state.messages.map(msg => {
 
                             return <Message msg={msg}></Message>
