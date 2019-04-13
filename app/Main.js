@@ -31,6 +31,8 @@ class Message extends React.Component {
   }
 }
 let interval = null;
+let interval2 = null;
+
 class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -60,8 +62,27 @@ class Main extends React.Component {
       }
     });
   }
+
+  getStatus() {
+    axios.get("status").then(response => {
+      axios
+        .get("/status")
+        .then(res => res.data.data[0])
+        .then(res => {
+          document.getElementById("status-now").innerHTML = res.now;
+          document.getElementById("status-host").innerHTML = res.host;
+          document.getElementById("status-supervisor").innerHTML =
+            res.supervisor;
+          document.getElementById("status-next").innerHTML = res.next;
+          console.log(res.now);
+        })
+        .catch(err => console.log(err));
+    });
+  }
+
   componentDidMount() {
     interval = window.setInterval(this.getMessages, 1000);
+    interval2 = window.setInterval(this.getStatus, 2000);
 
     if (navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices
@@ -77,6 +98,7 @@ class Main extends React.Component {
   }
   componentWillUnmount() {
     clearInterval(interval);
+    clearInterval(interval2);
   }
   render() {
     console.log(this.state);
