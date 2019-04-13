@@ -12,13 +12,18 @@ body {
     color: #00d000;
 }
 #message-container {
+    position: relative;
     color: #FFF;
     font-size: 24px;
     height: 100vh;
     width: 30%;
 }
 #messages{
-    margin-left: 5%;
+    position: absolute;
+    left: 10;
+    height: 100vh;
+    width: 100%;
+    overflow: scroll;
 }
 .message{
     margin-top: 10px;
