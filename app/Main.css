@@ -1,0 +1,84 @@
+body {
+	font-family: helvetica, arial, sans-serif;
+    margin: 0;
+    overflow: hidden;
+    background: #000;
+}
+
+#message-container {
+    color: #FFF;
+    font-size: 24px;
+    height: 100vh;
+    width: 30%;
+}
+#messages{
+    margin-left: 5%;
+}
+.message{
+    margin-top: 10px;
+}
+.message {
+	padding: 1%;
+	width: 96%;
+	overflow: hidden;
+}
+
+.message.supervisor-1 {
+	color: red;
+}
+
+#video{
+    width: 100%;
+    
+}
+#other {
+        background: #000;
+    padding-left:20px;
+    padding-top: 20px;
+    position: absolute;
+    bottom: 0;
+    height: 200px;
+    width: calc(70% - 20px);
+	color: #FFF;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 27px;
+}
+
+#left {
+
+	bottom: 10px;
+	width: 70%;
+	height: auto;
+}
+#info {
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    position:absolute;
+    right: 20px;
+    top: 30%;
+}
+
+#info #name {
+   
+	font-size: 40px;
+
+
+}
+
+#info #phone {
+	font-size: 30px;
+    margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#info #form span {
+	display: block;
+
+}
+
+#info #form span#form-addr {
+	margin-bottom: 30px;
+}
+
