@@ -52,7 +52,7 @@ class Main extends React.Component {
   getMessages() {
     axios.get("/messages?$sort[date]=1&$limit=100").then(response => {
       if (response.status === 200) {
-        let messages = response.data.data.map(x => {
+        let messages = response.data.map(x => {
           return {
             msg: x.text,
             isAdmin: x.admin,
@@ -71,7 +71,7 @@ class Main extends React.Component {
     axios.get("status").then(response => {
       axios
         .get("/status")
-        .then(res => res.data.data[0])
+        .then(res => res.data[0])
         .then(res => {
           document.getElementById("status-now").innerHTML = res.now;
           document.getElementById("status-host").innerHTML = res.host;
