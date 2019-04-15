@@ -1,95 +1,133 @@
-body {
-	font-family: helvetica, arial, sans-serif;
-    margin: 0;
-    overflow: hidden;
-    background: #000;
-}
-.mainContainer{
-    background: #000;
+@font-face {
+  font-family: "Spanish-Teletext";
+  src: url("./fonts/Spanish-Teletext.ttf.woff") format("woff"),
+    url("./fonts/Spanish-Teletext.ttf.svg#Spanish-Teletext") format("svg"),
+    url("./fonts/Spanish-Teletext.ttf.eot"),
+    url("./fonts/Spanish-Teletext.ttf.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
 }
 
-.admin{
-    color: #00d000;
+body {
+  font-family: "Spanish-Teletext";
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+}
+.mainContainer {
+  background: #000;
+}
+
+.admin {
+  background: red;
 }
 #message-container {
-    position: relative;
-    color: #FFF;
-    font-size: 24px;
-    height: 100vh;
-    width: 30%;
+  position: relative;
+  color: #fff;
+  font-size: 22px;
+  height: 100vh;
+  width: 30%;
 }
-#messages{
-    position: absolute;
-    left: 10;
-    height: 100vh;
-    width: 100%;
-    overflow: scroll;
-}
-.message{
-    margin-top: 10px;
+#messages {
+  position: absolute;
+  left: 10;
+  height: 100vh;
+  width: 100%;
+  overflow: scroll;
 }
 .message {
-	padding: 1%;
-	width: 96%;
-	overflow: hidden;
+  margin-top: 10px;
+}
+.message {
+  padding: 1%;
+  width: 96%;
+  overflow: hidden;
 }
 
 .message.supervisor-1 {
-	color: red;
+  background-color: red;
 }
 
-#video{
-    width: 100%;
-    
+h3 {
+  background: #ff00ff;
 }
+
+#marquee1 {
+  font-size: 80px;
+  margin-bottom: 10px;
+  /* background: #00ffff; */
+}
+
+#marquee2 {
+  font-size: 80px;
+  background: #00d000;
+}
+
+#video {
+  width: 100%;
+}
+
+.atheneLogoContainer {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+
+.atheneLogo {
+  width: 100px;
+  animation: rotation 16s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
 #other {
-        background: #000;
-    padding-left:20px;
-    padding-top: 20px;
-    position: absolute;
-    bottom: 0;
-    height: 200px;
-    width: calc(70% - 20px);
-	color: #FFF;
-	font-size: 20px;
-	font-weight: bold;
-	line-height: 27px;
+  background: #000;
+  padding-top: 10px;
+  position: absolute;
+  bottom: 0;
+  height: 200px;
+  width: 70%;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 20px;
 }
 
 #left {
-
-	bottom: 10px;
-	width: 70%;
-	height: auto;
+  bottom: 10px;
+  width: 70%;
+  height: auto;
 }
 #info {
-    display:flex;
-    align-items: center;
-    flex-direction: column;
-    position:absolute;
-    right: 20px;
-    top: 30%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  right: 20px;
+  top: 30%;
 }
 
 #info #name {
-   
-	font-size: 40px;
-
-
+  font-size: 40px;
 }
 
 #info #phone {
-	font-size: 30px;
-    margin-top: 20px;
-	margin-bottom: 20px;
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 #info #form span {
-	display: block;
-
+  display: block;
 }
 
 #info #form span#form-addr {
-	margin-bottom: 30px;
+  margin-bottom: 30px;
 }
-

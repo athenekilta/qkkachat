@@ -1,6 +1,7 @@
 import React from "react";
 import "./Main.css";
 import axios from "axios";
+import logo from "./logo.png";
 function leftPad(value, length) {
   return value.toString().length < length
     ? leftPad("0" + value, length)
@@ -107,37 +108,32 @@ class Main extends React.Component {
     return (
       <div className="mainContainer" style={{ display: "flex" }}>
         <div id="left">
+          <div className="atheneLogoContainer">
+            <img src={logo} className="atheneLogo" />
+          </div>
           <video id="video" autoPlay>
-            Haetaan kuvaa >>>>>>> Stashed changes
+            Haetaan kuvaa
           </video>
-          <div id="other">
-            <div id="info">
-              <div id="name">Qkkachat</div>
-              <div id="contact">
-                <div id="phone">TG: @Qkkachat</div>
-              </div>
-            </div>
 
-            <div id="status">
-              <div className="row">
-                Nyt: <span id="status-now" />
+          <div id="other">
+            <marquee id="marquee1">
+              <div id="status">
+                Nyt: <span id="status-now" /> &nbsp; Juontaa:{" "}
+                <span id="status-host" /> &nbsp; Valvoo:{" "}
+                <span id="status-moderator" /> &nbsp; Seuraavaksi:{" "}
+                <span id="status-next" /> &nbsp;
               </div>
-              <div className="row">
-                Juontaa: <span id="status-host" />
-              </div>
-              <div className="row">
-                Valvoo: <span id="status-moderator" />
-              </div>
-              <br />
-              <div className="row">
-                Seuraavaksi: <span id="status-next" />
-              </div>
-            </div>
+            </marquee>
+            <marquee id="marquee2" direction="right">
+              <span>Qkkachat</span> &nbsp; &nbsp;
+              <span>TG: @Qkkachat</span> &nbsp; &nbsp;
+              <span>Call: +358 41 704 8608</span>
+            </marquee>
           </div>
         </div>
         <div id="message-container">
           <div id="messages">
-            <h2>Viestit studioon</h2>
+            <h3>Viestit studioon</h3>
             {this.state.messages.map(msg => {
               return <Message msg={msg} />;
             })}
