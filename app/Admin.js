@@ -21,7 +21,7 @@ class Admin extends React.Component {
       .get("/status")
       .then(res => {
         console.log(res.data.data);
-        let data = res.data.data;
+        let data = res.data;
         if (data.length > 0) {
           this.setState({
             now: data[0].now,
@@ -54,6 +54,7 @@ class Admin extends React.Component {
     if (this.state.id) {
       axios.patch("/status/" + this.state.id, info).then(res => {
         console.log(res);
+        this.fetchStatus();
       });
     } else {
       axios.post("/status", info).then(res => {
