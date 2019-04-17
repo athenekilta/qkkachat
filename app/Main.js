@@ -51,7 +51,7 @@ class Main extends React.Component {
     element.scrollTop = element.scrollHeight;
   }
   getMessages() {
-    axios.get("/messages?$sort[date]=1&$limit=100").then(response => {
+    axios.get("/messages?$sort[date]=-1&$limit=100").then(response => {
       if (response.status === 200) {
         let messages = response.data.map(x => {
           return {
